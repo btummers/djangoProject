@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <html>
+    <head>
+    </head>
+
+<body>
+
+<style type="text/css">
+
+.frame {
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    /*width: 800px;*/
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+</style>
+
+
+{{ hallo }}
+
+{% for cursus in mentor_data.results %}
+<article class="frame">
+
+    <div>
+        <section style="background-color: lightgrey; padding: 10px;">
+        <h1>{{cursus.title}} </h1>
+        <div>{{cursus.description|safe}}</div>
+         </section>
+        <br>
+    </div>
+
+</article>
+{% endfor %}
+
+</body>
+{% endblock %}
+
+    </html>
+

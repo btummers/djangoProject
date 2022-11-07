@@ -1,13 +1,133 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
-    {% for post in posts %}
-        <article class="post">
-            <time class="date">
-                {{ post.published_date }}
-            </time>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </article>
-    {% endfor %}
+
+
+    <!--       button      <a href="{% url 'post_create' %}">Knop</a>-->
+    <!--<div class="row">-->
+    <!--            {% for post in posts %}-->
+
+        <!--    <div class="card" style="width: 16rem;">-->
+
+        <!--&lt;!&ndash;        <img class="card-img-top" src="../../../images/bg.png" width="800px" height="350px" alt="Card image cap">&ndash;&gt;-->
+        <!--                <div class="card-body">-->
+        <!--                   <div> <h5 class="card-title">{{ post.title }}</h5>-->
+        <!--                        <a href="{% url 'post_detail' pk=post.pk %}">View</a> </div>-->
+        <!--                <div style="text-align: center;">-->
+        <!--                    <time class="date">-->
+        <!--                        {{ post.published_date }}-->
+        <!--                </div>-->
+        <!--&lt;!&ndash;                <p>{{ post.text|linebreaksbr }}</p>&ndash;&gt;-->
+
+        <!--                </div>-->
+        <!--    </div>-->
+
+        <!--<br>-->
+        <!--            {% endfor %}-->
+    <!--  </div>-->
+    <style>
+        .test-card {
+            border-radius: 6px 6px 0 0;
+            -webkit-border-radius: 6px 6px 0 0;
+        }
+
+        .test-card:before {
+            content: '';
+            width: 50px;
+            height: 55px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background: url("https://th.bing.com/th/id/OIP.ho7hCKNowRHh7u5wu1aMWQHaF9?pid=ImgDet&rs=1");
+            border-radius: 0 0 0 20px;
+            background-size: 50px 45px;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid grey;
+        }
+    </style>
+
+
+    <section class="appear-animation h-100" data-appear-animation="fadeIn">
+        <div class='container'>
+            <div class="row mb-3">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Sortering: {% if '-' in request.GET.s %}Nieuwste {% elif '-' not in request.GET.s %}Laatste{% endif %}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{% url 'post_list' %}?s=-published_date">Nieuwste</a></li>
+                        <li><a class="dropdown-item" href="{% url 'post_list' %}?s=published_date">Laatste</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    {% for post in posts %}
+                        <div class="card mb-2 test-card">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="card-title">
+                                        <a href="{% url 'post_detail' pk=post.pk %}"
+                                           style="text-decoration: none; color: black">
+                                            <div style="text-align: center;">{{ post.title }}</div>
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-12" style="border-bottom: 1px solid grey"></div>
+                            <br>
+                            <div class="row">
+                                <div class="col-6 p-4">
+                                    <p>{{ post.text|linebreaksbr }}</p>
+                                </div>
+
+                                <div class="col-4">
+                                    <div style="float: right; width: 200px; height: 400px;">
+                                        <img class="card-img-top"
+                                             src="https://preview.redd.it/xjh1xqzpm5j31.jpg?auto=webp&s=903ee92a1ddb21ce70f475abc1f874f8cde2e28c"
+                                             alt="*Insert image here*">
+                                    </div>
+                                </div>
+
+                                <div class="col-2"></div>
+                            </div>
+
+                            <div class="col-12">
+                                {{ post.isoformat }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-3" style="border-left: 1px solid grey">
+                    {% for cursus in mentor_data.results %}
+                        <div class="card p-3 mb-2">
+                            <h6>{{ cursus.title }}</h6>
+                            <p>{{ cursus.description|safe|truncatewords:20 }}</p>
+                            <a href="{{ cursus.link_to_mentor }}" style="text-decoration: none">Naar de Cursus Pagina
+                                -></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--API DO NOT DELETE-->
+    <!--{% for cursus in mentor_data.results %}-->
+        <!--<article class="frame">-->
+        <!--    <img src="https://meijer-group.com/wp-content/uploads/2017/03/vlag_nederland_rechtformaat_4.jpg" width="100"-->
+        <!--         height="50">-->
+        <!--    <div>-->
+        <!--        <h1>{{cursus.title}} </h1>-->
+        <!--        <div>{{cursus.description|safe}}</div>-->
+        <!--        <a href="/">knopp</a>-->
+        <!--    </div>-->
+        <!--    <br>-->
+        <!--</article>-->
+        <!--{% endfor %}-->
+
 {% endblock %}
