@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <div class="card" style="padding: 10px">
+<form method="POST" novalidate>
+	{% csrf_token %}
+	<h2 style="color: black; ">Sign Up</h2>
+    <br>
+	{% for field in form %}
+	<p>
+		{% if field.errors %}
+		<ul class="errorlist">
+			{% for error in field.errors %}
+			<li>{{ error }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	 	{{ field.label_tag }}
+        <div class="col-sm-2"> {{ field }} </div>
+	</p>
+	{% endfor %}
+	<input type="submit" value="Register" />
+</form>
+    </div>
+
+
+{% endblock content %}

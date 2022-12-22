@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 
     {#<form method="post">{% csrf_token %}#}
@@ -6,29 +7,40 @@
     {#    <input type="submit" value="Update">#}
     {#</form>#}
 
-    <div class="container">
-        <h1>Form</h1>
-        <form action="{% url 'post_update' pk=post_id %}" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.title }}
-            </div>
-            <div class="form-group">
-                {{ form.text }}
-            </div>
-            <div class="form-group">
-                {{ form.published_date }}
-            </div>
-            <div class="form-group">
-                {{ form.author }}
-            </div>
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Submit">
-            </div>
-        </form>
-    </div>
+{#    <div class="container">#}
+{#        <h1>Form</h1>#}
+{#        <form action="{% url 'post_update' pk=post_id %}" method="post">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                {{ form.title }}#}
+{#            </div>#}
+{#             <br>#}
+{#            <div class="form-group">#}
+{#                {{ form.text }}#}
+{#            </div>#}
+{#             <br>#}
+{#            <div class="form-group">#}
+{#                {{ form.published_date }}#}
+{#            </div>#}
+{#            <br>#}
+{#            <div class="form-group">#}
+{#                {{ form.author }}#}
+{#            </div>#}
+{#             <br>#}
+{#            <div class="form-group">#}
+{#                <input class="btn btn-primary" type="submit" value="Submit">#}
+{#                 <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-default" style="color: red"> Cancel </a>#}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
 
-    <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-default" style="color: red"> Cancel </a>
+    <div class="col d-flex justify-content-center">
+        <div class="card" style="width: 700px; padding: 10px">
+            About to update a post
+            {% crispy form %}
+
+        </div>
+    </div>
 
     <script>
         $('#id_published_date').flatpickr({

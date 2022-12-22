@@ -9,7 +9,7 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True)
-
+    image = models.ImageField(upload_to='images')
     @property
     def isoformat(self):
         if self.published_date:
@@ -19,6 +19,12 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+    def __str__(self):
+        return self.title
+class Image(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images')
 
     def __str__(self):
         return self.title

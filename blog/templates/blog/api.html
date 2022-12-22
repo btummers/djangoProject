@@ -1,44 +1,222 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
-    <html>
-    <head>
-    </head>
 
-<body>
-
-<style type="text/css">
-
-.frame {
-    display: flex;
-    background-color: white;
-    padding: 10px;
-    /*width: 800px;*/
-    flex-wrap: nowrap;
-    gap: 15px;
-}
-
-</style>
+    <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
 
 
-{{ hallo }}
+    <style>
+        #icon-collection {
+            width: 60px;
+        }
+    </style>
 
-{% for cursus in mentor_data.results %}
-<article class="frame">
+    <marquee scrolldelay="10" scrollamount="5" direction="right">
+        <div class="placeholderimage"><img src="{% static 'images/Duck.jfif' %}"
+                                           style="width: 100%; height: 200px; opacity: 50%"></div>
+    </marquee>
 
-    <div>
-        <section style="background-color: lightgrey; padding: 10px;">
-        <h1>{{cursus.title}} </h1>
-        <div>{{cursus.description|safe}}</div>
-         </section>
-        <br>
+    <a href="#" onclick="topFunction()" id="myBtn" title="Go to top"
+       style="position:fixed; float: left;">
+        {#        <img src="{% static 'images/arrow-up-circle.svg' %}" style="height: 30px; width: 30px;">#}
+        <svg style="color: white; width: 50px;height: 50px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+             fill="currentColor" class="bi bi-arrow-up-circle"
+             viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+        </svg>
+    </a>
+
+    <div class="row mt-3">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="bg-light rounded" id="icon-container"
+                         style=" border-color: black; min-height: 300px; max-width: 60px;text-align: center;">
+                        <div id="icon-collection">
+                            <button class="btn" onclick="change_text('description')"><span class="material-icons mt-4">info</span>
+                            </button>
+                            <br>
+                            <hr>
+                            <button class="btn" onclick="change_text('data')"><span class="material-icons mt-3">calendar_month</span></button>
+                            <br>
+                            <hr>
+                            <button class="btn" onclick="change_text('Visibility')"><span class="material-icons mt-3">visibility</span></button>
+                            <br>
+                            <hr>
+                            <button class="btn" onclick="change_text('reviews')"><span class="material-icons mt-3">reviews</span></button>
+                            <br>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+
+                     $('button').on('click', function() {
+    $('button').removeClass('active');
+    $(this).addClass('active');
+})
+
+                </script>
+
+                <div class="col-md-8">
+                    <div class="bg-light rounded p-3 mb-4"
+                         style=" border-color: black; min-height: 50px;">
+                        <h3>{{ cursus.title }}</h3>
+                    </div>
+
+                    <div class="card p-3" style=" border-color: black;" id="demo">
+                        <div id="description" class="">{{ cursus.description|safe }}</div>
+                        <div id="data" class="d-none"> {{ cursus.office_hour_description }} </div>
+                        <div id="Visibility" class="d-none">{{ cursus|safe }}</div>
+                        <div id="reviews" class="d-none">Oh ja is goed hoor. Ja hoor ja</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {#        <div class="col-sm-8">#}
+        {#            <div class="card"#}
+        {#                 style=" border-color: black; width: 50px; min-height: 300px; margin-left: -200px; margin-top: 50px;padding-left: 4px;">#}
+        {#                Text#}
+        {#                <div class="card"#}
+        {#                     style=" border-color: black; width: 600px; height: 50px; margin-left: 70px; padding-left: 4px;">#}
+        {#                    <h3>{{ cursus.title }}</h3>#}
+        {#                </div>#}
+        {##}
+        {#                <div class="card"#}
+        {#                     style=" border-color: black; width: 600px; margin-top: 50px; margin-left: 70px; padding: 15px;">#}
+        {##}
+        {#                    {{ cursus.description|safe }}#}
+        {##}
+        {#                    {{ cursus }}#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+
+        <div class="col-sm-4">
+            <div class="card" style="width: 22rem; margin-top: -100px; border-color: black; position: fixed;">
+                <img class="card-img-top" src="{{ cursus.image }}" alt="Card image cap" style="max-height: 200px">
+                <div class="col-12" style="border-top: 1px solid black">
+                    <div class="card-body" style="max-width: 18rem;">
+
+                        <h5 class="card-title">{{ cursus.title }}</h5>
+
+                        <p class="card-text">
+                            {#                            {{ cursus }}#}
+                            <br>
+                            <br>
+                            {{ cursus.subject.title }}
+                            <br>
+                            <br>
+                           € {{ cursus.price }}
+                            {% for catalogtag in cursus.catalog_tags %}
+                                {{ catalogtag }}nbsp;
+                            {% endfor %}
+
+                            <br>
+                        </p>
+
+                        <a href="{{ cursus.link_to_mentor }}" class="btn btn-primary"
+                           style="background-color: #1f1f1f; border-color: #1f1f1f">Cursus Kopen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-</article>
-{% endfor %}
+    <script>
+        {#function getAbsPosition(element) {#}
+        {#    var rect = element.getBoundingClientRect();#}
+        {#    return rect#}
+        {# }#}
+        {##}
+        {##}
+        {#var positiion = getAbsPosition(document.getElementById("icon-container"))#}
+        {##}
+        {#console.log(positiion)#}
+        {##}
+        {#$(window).scroll(function () {#}
+        {#    if ($(window).scrollTop() >= positiion.bottom - 600) {#}
+        {#        console.log($(window).scrollTop())#}
+        {#        $('#icon-collection').css({'position': 'relative'})#}
+        {#    } else {#}
+        {#        $('#icon-collection').css({'position': 'fixed'})#}
+        {#    }#}
+        {# });#}
 
-</body>
+
+        // Get the button
+        let mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+
+        function change_text(showType) {
+            console.log(showType)
+            switch (showType) {
+
+                case "description":
+                    console.log(showType, "remove")
+                    $("#description").removeClass("d-none")
+                    $("#data").addClass('d-none');
+                    $("#Visibility").addClass('d-none');
+                    $("#reviews").addClass('d-none');
+                    {#document.getElementById("description").classList.remove('d-none');#}
+                    //code a
+                    break;
+
+                case "data":
+                    //code b
+                    console.log(showType, "add")
+                    $("#description").addClass('d-none');
+                    $("#data").removeClass('d-none');
+                    $("#Visibility").addClass('d-none');
+                    $("#reviews").addClass('d-none');
+                    break;
+
+                    case "Visibility":
+                    //code b
+                    console.log(showType, "add")
+                    $("#description").addClass('d-none');
+                    $("#data").addClass('d-none');
+                    $("#Visibility").removeClass('d-none');
+                    $("#reviews").addClass('d-none');
+                    break;
+
+                case "reviews":
+                    //code b
+                    console.log(showType, "add")
+                    $("#description").addClass('d-none');
+                    $("#reviews").removeClass('d-none');
+                     $("#Visibility").addClass('d-none');
+                    break;
+
+            }
+        }
+
+
+    </script>
 {% endblock %}
-
-    </html>
-

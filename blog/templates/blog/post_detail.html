@@ -1,17 +1,18 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% block content %}
 
     <article class="post">
         {% if post.published_date %}
-            <time class="date">
+            <time class="date" style="color: white">
                 {{ post.published_date }}
             </time>
         {% endif %}
         <h2>{{ post.title }}</h2>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p style="color: white">{{ post.text|linebreaksbr }}</p>
     </article>
 
-    <a href="{% url 'post_list' %}" class="btn btn-default" style="background: #ce2b32"> Go back </a>
+    <a href="{% url 'post_list' %}" class="btn btn-default" style="background: white"> Go back </a>
 
     <span style="float: right">
         <td class="header_button ">
@@ -19,14 +20,14 @@
                         <ul id="Ul1">
 
                                 <li style="list-style-type: none">
-                                    <img src="https://th.bing.com/th/id/OIP.KIIhnaZM35hJDctYwkHUCwHaHa?pid=ImgDet&rs=1"
+                                    <img src="{% static 'images/Cog.png' %}"
                                          style="height: 30px; width: 30px;">
                                 </li>
 
-                                <li class="item">
+                                <li class="item" style="background-color: #d5d5d5">
                                 <a href="{% url 'post_update' pk=post.pk %}" style="text-decoration: none">Edit Post</a>
                                 </li>
-                                <li class="item">
+                                <li class="item" style="background-color: #d5d5d5">
                                 <a href="{% url 'post_delete' pk=post.pk %}" style="text-decoration: none; color: red">Delete</a>
                                 </li>
                         </ul>

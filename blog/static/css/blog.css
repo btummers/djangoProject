@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #ce2b32;
+    background-color: #1f1f1f;
     margin-top: 0;
     margin-bottom: 40px;
     padding: 20px 20px 20px 40px;
@@ -19,6 +19,10 @@ h1,
 h3,
 h4 {
     font-family: 'Lobster', cursive;
+}
+
+h2 {
+    color: white;
 }
 
 .date {
@@ -59,14 +63,14 @@ h4 {
 
 .btn-secondary,
 .btn-secondary:visited {
-    color: #ce2b32;
-    background: none;
-    border-color: #ce2b32;
+    color: black;
+    background: white;
+    border-color: white;
 }
 
 .btn-secondary:hover {
-    color: #FFFFFF;
-    background-color: #ce2b32;
+    color: black;
+    background-color: white;
 }
 
 .frame {
@@ -113,3 +117,22 @@ white-space: nowrap;
 }
 #menu ul:hover .item{display:block;}
 #menu{margin-top:-22px;position:fixed}
+
+.spacer {
+
+    aspect-ratio: 900/450;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    float: bottom;
+
+}
+
+.placeholderimage {
+    position: relative;
+
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+}
