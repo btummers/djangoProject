@@ -40,8 +40,10 @@ def post_list(request):
 
     subject_id = request.GET.get('subject_id', '')
 
-    resp = requests.get(f'https://tst-rugtc.poweredbymentor.nl/api/modules_api/catalog/?subject_id={subject_id}')
-    thema = requests.get('https://tst-rugtc.poweredbymentor.nl/api/modules_api/subjects/')
+    resp = requests.get(f'https://tst-rugtc.poweredbymentor.nl/api/modules_api/catalog/?subject_id={subject_id}',
+                        headers={'User-Agent': 'btummers'})
+    thema = requests.get('https://tst-rugtc.poweredbymentor.nl/api/modules_api/subjects/',
+                         headers={'User-Agent': 'btummers'})
 
     try:
         mentor_data = resp.json()
