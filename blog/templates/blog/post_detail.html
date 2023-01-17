@@ -10,6 +10,8 @@
         {% endif %}
         <h2>{{ post.title }}</h2>
         <p style="color: white">{{ post.text|linebreaksbr }}</p>
+    <br>
+    <div style="width: 400px; height: 200px;">  <img class="card-img-top" src="/media/{{ post.image }}" alt="*image*"> </div>
     </article>
 
     <a href="{% url 'post_list' %}" class="btn btn-default" style="background: white"> Go back </a>
@@ -19,7 +21,7 @@
                         <div id="menu">
                         <ul id="Ul1">
 
-                                <li style="list-style-type: none">
+                                <li style="list-style-type: none" >
                                     <img src="{% static 'images/Cog.png' %}"
                                          style="height: 30px; width: 30px;">
                                 </li>
@@ -36,4 +38,3 @@
         </td>
     </span>
 {% endblock %}
-

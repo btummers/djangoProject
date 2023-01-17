@@ -41,9 +41,9 @@ def post_list(request):
     subject_id = request.GET.get('subject_id', '')
 
     try:
-        resp = requests.get(f'https://tst-rugtc.poweredbymentor.nl/api/modules_api/catalog/?subject_id={subject_id}',
+        resp = requests.get(f'https://workshops.poweredbymentor.nl/api/modules_api/catalog/?subject_id={subject_id}',
                             headers={'User-Agent': 'btummers'})
-        thema = requests.get('https://tst-rugtc.poweredbymentor.nl/api/modules_api/subjects/',
+        thema = requests.get('https://workshops.poweredbymentor.nl/api/modules_api/subjects/',
                              headers={'User-Agent': 'btummers'})
 
         mentor_data = resp.json()
@@ -129,7 +129,7 @@ class ApiView(View):
 
         cursus_id = self.kwargs.get('cursus_id')
         try:
-            resp = requests.get(f'https://tst-rugtc.poweredbymentor.nl/api/modules_api/catalog/{cursus_id}/')
+            resp = requests.get(f'https://workshops.poweredbymentor.nl/api/modules_api/catalog/{cursus_id}/')
             resp = resp.json()
         except:
             resp = []

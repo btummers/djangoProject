@@ -136,3 +136,10 @@ white-space: nowrap;
   margin-right: -50vw;
 
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
