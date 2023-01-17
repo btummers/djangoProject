@@ -1,7 +1,7 @@
 .page-header {
     background-color: #1f1f1f;
     margin-top: 0;
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
     padding: 20px 20px 20px 40px;
 }
 
@@ -129,13 +129,13 @@ white-space: nowrap;
 
 }
 
-.placeholderimage {
-    position: relative;
+/*.placeholderimage {*/
+/*    position: relative;*/
 
-  margin-left: -50vw;
-  margin-right: -50vw;
+/*  margin-left: -50vw;*/
+/*  margin-right: -50vw;*/
 
-}
+/*}*/
 
 .center {
   display: block;

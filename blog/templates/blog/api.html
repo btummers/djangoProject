@@ -1,5 +1,15 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+
+{% block header %}
+    <div style="text-align: center;">
+        <div class="placeholderimage">
+            <img src="{% static 'images/cursus.jpg' %}"
+                 style="width: 100%; height: 310px; opacity: 70%; object-fit: cover;">
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
 
     <script
@@ -14,11 +24,9 @@
         }
     </style>
 
-{#    <marquee scrolldelay="10" scrollamount="5" direction="right">#}
-        <div style="text-align: center;"><div class="placeholderimage">
-            <img src="{% static 'images/cursus.jpg' %}" style="width: 50%; height: 200px; opacity: 70%;"></div>
-        </div>
-{#    </marquee>#}
+    {#    <marquee scrolldelay="10" scrollamount="5" direction="right">#}
+
+    {#    </marquee>#}
 
     <a href="#" onclick="topFunction()" id="myBtn" title="Go to top"
        style="position:fixed; float: left;">
@@ -42,25 +50,27 @@
                             </button>
                             <br>
                             <hr>
-                            <button class="btn" onclick="change_text('data')"><span class="material-icons mt-3">calendar_month</span></button>
+                            <button class="btn" onclick="change_text('data')"><span class="material-icons mt-3">calendar_month</span>
+                            </button>
                             <br>
                             <hr>
-                            <button class="btn" onclick="change_text('Visibility')"><span class="material-icons mt-3">visibility</span></button>
-                            <br>
-                            <hr>
-                            <button class="btn" onclick="change_text('reviews')"><span class="material-icons mt-3">reviews</span></button>
-                            <br>
-                            <hr>
+                            {#                            <button class="btn" onclick="change_text('Visibility')"><span class="material-icons mt-3">visibility</span></button>#}
+                            {#                            <br>#}
+                            {#                            <hr>#}
+                            <button class="btn" onclick="change_text('reviews')"><span class="material-icons mt-3">reviews</span>
+                            </button>
+                            {#                            <br>#}
+                            {#                            <hr>#}
                         </div>
                     </div>
                 </div>
 
                 <script>
 
-                     $('button').on('click', function() {
-    $('button').removeClass('active');
-    $(this).addClass('active');
-})
+                    $('button').on('click', function () {
+                        $('button').removeClass('active');
+                        $(this).addClass('active');
+                    })
 
                 </script>
 
@@ -72,9 +82,9 @@
 
                     <div class="card p-3" style=" border-color: black;" id="demo">
                         <div id="description" class="">{{ cursus.description|safe }}</div>
-                        <div id="data" class="d-none"> {{ cursus.office_hour_description }} </div>
-                        <div id="Visibility" class="d-none">{{ cursus|safe }}</div>
-                        <div id="reviews" class="d-none">Oh ja is goed hoor. Ja hoor ja</div>
+                        <div id="data" class="d-none"> Momenteel geen informatie beschikbaar</div>
+                        {#                        <div id="Visibility" class="d-none">{{ cursus|safe }}</div>#}
+                        <div id="reviews" class="d-none">Geen reviews beschikbaar</div>
                     </div>
 
                 </div>
@@ -115,7 +125,7 @@
                             {{ cursus.subject.title }}
                             <br>
                             <br>
-                           € {{ cursus.price }}
+                            € {{ cursus.price }}
                             {% for catalogtag in cursus.catalog_tags %}
                                 {{ catalogtag }}nbsp;
                             {% endfor %}
@@ -183,9 +193,9 @@
                     console.log(showType, "remove")
                     $("#description").removeClass("d-none")
                     $("#data").addClass('d-none');
-                    $("#Visibility").addClass('d-none');
+                {#$("#Visibility").addClass('d-none');#}
                     $("#reviews").addClass('d-none');
-                    {#document.getElementById("description").classList.remove('d-none');#}
+                {#document.getElementById("description").classList.remove('d-none');#}
                     //code a
                     break;
 
@@ -194,25 +204,26 @@
                     console.log(showType, "add")
                     $("#description").addClass('d-none');
                     $("#data").removeClass('d-none');
-                    $("#Visibility").addClass('d-none');
+                {#$("#Visibility").addClass('d-none');#}
                     $("#reviews").addClass('d-none');
                     break;
 
-                    case "Visibility":
-                    //code b
-                    console.log(showType, "add")
-                    $("#description").addClass('d-none');
-                    $("#data").addClass('d-none');
-                    $("#Visibility").removeClass('d-none');
-                    $("#reviews").addClass('d-none');
-                    break;
+                {#case "Visibility":#}
+                {#//code b#}
+                {#console.log(showType, "add")#}
+                {#$("#description").addClass('d-none');#}
+                {#$("#data").addClass('d-none');#}
+                {#$("#Visibility").removeClass('d-none');#}
+                {#$("#reviews").addClass('d-none');#}
+                {#break;#}
 
                 case "reviews":
                     //code b
                     console.log(showType, "add")
                     $("#description").addClass('d-none');
                     $("#reviews").removeClass('d-none');
-                     $("#Visibility").addClass('d-none');
+                    $("#data").addClass('d-none');
+                {#$("#Visibility").addClass('d-none');#}
                     break;
 
             }

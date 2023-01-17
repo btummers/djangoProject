@@ -47,8 +47,29 @@ def post_list(request):
                              headers={'User-Agent': 'btummers'})
 
         mentor_data = resp.json()
+        subjects = {
+            "count": 0,
+            "next": None,
+            "previous": None,
+            "results": []
+        }
         thema_data = thema.json()
-    except:
+        if thema_data.get('count', 0) == 0:
+
+            for cursus in mentor_data.get('results'):
+                subject = cursus.get('subject')
+                subject_found = False
+                for existing_subject in subjects["results"]:
+                    if subject.get('id') == existing_subject.get('id'):
+                        subject_found = True
+
+                if not subject_found:
+                    subjects["results"].append(subject)
+
+            thema_data = subjects
+
+    except Exception as exc:
+        print(exc)
         mentor_data = []
         thema_data = []
     # print(resp.json())
