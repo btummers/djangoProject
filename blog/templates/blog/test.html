@@ -1,6 +1,51 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<style>
+.dot {
+  width: 100px;
+  height: 100px;
+  {#background: red;#}
+  position: relative;
+  animation: mymove 5s infinite;
+    margin-right: 3px;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 10px;
+        height: 25px;
+        background: white;
+        border: 1px solid ghostwhite;
+   margin-right: 3px;
+}
+
+@keyframes mymove {
+  0%   { background: white; opacity: 0%;}
+  {#25%  { background: white; opacity: 25%;}#}
+  {#50%  { background: white; opacity: 50%;}#}
+  {#75%  { background: white; opacity: 75%;}#}
+  100% { background: white; opacity: 100%;}
+}
 
 
+    @keyframes opacity {
+
+    }
+
+
+</style>
+
+<div class="row">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+</div>
+<br>
+    <br>
+    <div class="row">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
 
 {% endblock %}

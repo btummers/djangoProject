@@ -136,6 +136,7 @@
                     {% for cursus in mentor_data.results %}
                         <div class="card p-3 mb-2">
                             <h6>{{ cursus.title }}</h6>
+                            <p><img src="{{ cursus.image }}" style="object-fit: contain; width: 100%"></p>
                             <p>{{ cursus.description|safe|truncatewords:20 }}</p>
                             <b><a href="{% url 'api' cursus.id %}" style="text-decoration: none; color: black">Naar de
                                 Cursus Pagina
